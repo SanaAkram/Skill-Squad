@@ -1,0 +1,129 @@
+
+/*--------Footer------------------*/
+
+#footer
+{
+    background-image: linear-gradient(to right, #5c0047,#FFFFCC);
+    color: white;
+}
+.footer-img
+{
+    width: 100%;
+
+}
+.footer-box
+{
+    padding: 20px;
+}
+.footer-box img
+{
+
+
+    width: 360px;
+    margin-bottom: 50px;
+}
+.footer-box .fa
+{
+    margin-bottom: 4px;
+    margin-top: 10px;
+    font-size: 25px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    padding-top: 2px;
+    border-radius: 10px;
+
+
+}
+.footer-box .form-control
+{
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    margin-top: 5px;
+    margin-left: 10px;
+    max-width: 250px;
+}
+.footer-box .btn-primary
+{
+    box-shadow: none !important;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-image: linear-gradient(to right, #5c0047,#FFFFCC);
+
+}
+.footer-box a
+{
+
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: 600;
+}
+/*--------Top Sales-----------------*/
+#top-sale.owl-carousel .item .product a{
+    overflow: hidden;
+    background-color: #FFD289 !important;
+}
+
+/*--------Footer------------------*/
+
+#footer
+{
+    background-image: linear-gradient(to right, #5c0047,#FFFFCC);
+    color: white;
+}
+.footer-img
+{
+    width: 100%;
+
+}
+.footer-box
+{
+    padding: 20px;
+}
+
+.footer-box img {
+    width: 100%;
+    margin-bottom: 50px;
+}
+.footer-box .fas
+{
+    margin-bottom: 4px;
+    margin-top: 10px;
+    font-size: 25px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    padding-top: 2px;
+    border-radius: 10px;
+
+
+}
+.footer-box .form-control
+{
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    margin-top: 5px;
+    margin-left: 10px;
+    max-width: 250px;
+}
+.footer-box .btn-primary
+{
+    box-shadow: none !important;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-image: linear-gradient(to right, #5c0047,#FFFFCC);
+
+}
+.footer-box a
+{
+
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: 600;
+}
