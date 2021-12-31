@@ -75,6 +75,7 @@ export const SubmitButton = styled.button`
   
 
 `;
+//css of validity
 export const Validity =styled.p `
 margin: 10px 10px 30px;
 opacity: 0.5 ;
