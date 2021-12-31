@@ -18,17 +18,18 @@ import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import './validity.css';
 import { nodeName } from "jquery";
+import validator from 'validator'
 export function SignupForm(props) {
   const [show, setShow] = useState(false);
 const { switchToSignin } = useContext(AccountContext);
 
 
 
- //Validate
+//pasword strehntg meter
 
     const handleShowHide =() =>{
       setShow(!show);
-      //  do something
+      //  PasswordStrength meter
     };
 
   const [ password, setPassword] = useState('');
@@ -58,11 +59,53 @@ const num = testResult.score * 100/4;
       
     }
   }
- //Validate
+ //pasword strehntg meter
+//const valid = ( item, v_icon, inv_icon) => {
+//let text = document.querySelector (`#$[item]`);
+//text.style.opacity = 1;
+//};
+//const handleInputChange = e => {
+//const txt = e.target.value;
+//if(txt.match(/[A-Z]/) != null){
+  //valid("capital" , "fa-check" , "fa-times");
+ //}
+//};
+//const handleShowhide = () => {
+  //setShow(!show);
+//};
 
-
-
- 
+const App = () => {
+  
+  const [errorMessage, setErrorMessage] = useState('')
+  
+  const validate = (value) => {
+  
+    if (validator.isStrongPassword(value, {
+      minLength: 8, minLowercase: 1,
+      minUppercase: 1, minNumbers: 1, minSymbols: 1
+    })) {
+      setErrorMessage('Is Strong Password')
+    } else {
+      setErrorMessage('Is Not Strong Password')
+    }
+  }
+  
+  return (
+    <div style={{
+      marginLeft: '200px',
+    }}>
+      <pre>
+        <h2>Checking Password Strength in ReactJS</h2>
+        <span>Enter Password: </span><input type="text"
+          onChange={(e) => validate(e.target.value)}></input> <br />
+          <span style={{
+          fontWeight: 'bold',
+          color: 'red',
+        }}>{errorMessage}</span>
+      </pre>
+    </div>
+  );
+}
 
   return (
  
