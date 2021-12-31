@@ -9,6 +9,7 @@ export const Container = styled.div`
     padding-bottom: -60px;
     
   }
+//
   @media (min-width: 500px) {
     padding-top: 20px;
     padding-bottom: -60px;
