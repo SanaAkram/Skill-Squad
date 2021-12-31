@@ -12,9 +12,12 @@ import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import Services from './pages/Service/Services';
 import Navbar from './Components/Navbar/Navbar';
-import Footer from './Components/Footer';
 import Courses from './pages/Courses/Courses';
 import Account from './Components/Account';
+import { FooterContainer } from './Components/Footer/containers/footer'
+
+
+
 const App = () => {
   return (
     <Router>
@@ -43,7 +46,7 @@ const App = () => {
         <Redirect to="/" />
       </Switch>
     </main>
-    <Footer />
+    <FooterContainer />
    </Router>
   );
 }
