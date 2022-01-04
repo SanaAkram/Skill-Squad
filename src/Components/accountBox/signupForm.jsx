@@ -25,7 +25,7 @@ const { switchToSignin } = useContext(AccountContext);
 
 
 
-//pasword strehntg meter
+//pasword strength meter
 
     const handleShowHide =() =>{
       setShow(!show);
