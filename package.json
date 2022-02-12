@@ -1,5 +1,5 @@
 {
-  "name": "modern_react_navbar",
+  "name": "skill_squad",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,9 +29,10 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
+    "start": "nodemon database.js",
     "start": "react-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
