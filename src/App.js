@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -17,8 +17,8 @@ import Account from './Components/Account';
 import { FooterContainer } from './Components/Footer/containers/footer'
 
 
-
 const App = () => {
+ 
   return (
     <Router>
     <Navbar/>
@@ -43,7 +43,7 @@ const App = () => {
            
           <Account/>
         </Route>
-        <Redirect to="/" />
+        
       </Switch>
     </main>
     <FooterContainer />

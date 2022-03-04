@@ -102,7 +102,7 @@ const expandingTransition = {
 
 export function AccountBox(props) {
   const [isExpanded, setExpanded] = useState(false);
-  const [active, setActive] = useState("signin");
+  const [active, setActive] = useState("/signin");
 
   const playExpandingAnimation = () => {
     setExpanded(true);
@@ -114,14 +114,14 @@ export function AccountBox(props) {
   const switchToSignup = () => {
     playExpandingAnimation();
     setTimeout(() => {
-      setActive("signup");
+      setActive("/signup");
     }, 400);
   };
 
   const switchToSignin = () => {
     playExpandingAnimation();
     setTimeout(() => {
-      setActive("signin");
+      setActive("/signin");
     }, 400);
   };
 
@@ -137,14 +137,14 @@ export function AccountBox(props) {
             variants={backdropVariants}
             transition={expandingTransition}
           />
-          {active === "signin" && (
+          {active === "/signin" && (
             <HeaderContainer>
               <HeaderText>Welcome</HeaderText>
               <HeaderText>Back</HeaderText>
               <SmallText>Please sign-in to continue!</SmallText>
             </HeaderContainer>
           )}
-          {active === "signup" && (
+          {active === "/signup" && (
             <HeaderContainer>
               <HeaderText>Create</HeaderText>
               <HeaderText>Account</HeaderText>
@@ -153,8 +153,8 @@ export function AccountBox(props) {
           )}
         </TopContainer>
         <InnerContainer>
-          {active === "signin" && <LoginForm />}
-          {active === "signup" && <SignupForm />}
+          {active === "/signin" && <LoginForm />}
+          {active === "/signup" && <SignupForm />}
         </InnerContainer>
       </BoxContainer>
     </AccountContext.Provider>

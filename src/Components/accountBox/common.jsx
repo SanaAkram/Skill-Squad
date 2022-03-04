@@ -65,7 +65,7 @@ export const SubmitButton = styled.button`
   cursor: pointer;
   transition: all, 240ms ease-in-out;
   background:   linear-gradient( 58deg,rgb(57 2 16 / 99%) 20%,rgb(134 33 160 / 92%) 100% );
-
+  margin-bottom: 10px;
   );
 
   &:hover {
@@ -100,5 +100,26 @@ font-size: 12px;
   outline: none;
   border-bottom: 2px solid rgb(241, 196, 15);
 }
+
+`;
+export const GoogleLogin = styled.button`
+  width: 100%;
+  padding: 11px 40%;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 100px 100px 100px 100px;
+  cursor: pointer;
+  transition: all, 240ms ease-in-out;
+  background:   linear-gradient( 58deg,rgb(57 2 16 / 99%) 20%,rgb(134 33 160 / 92%) 100% );
+
+  );
+
+  &:hover {
+    filter: brightness(1.03);
+    background-color: gray;
+  }
+  
 
 `;

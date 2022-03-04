@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react'
+import React , {useState, useEffect} from 'react'
 import './Navbar.css';
 import { NavLink } from 'react-router-dom';
 
@@ -7,7 +7,13 @@ import $ from 'jquery';
 
 import logo from '../assets/images/logoss.png';
 const Navbar = () => {
-
+const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+console.log(user);
+useEffect(() =>{
+  const token = user?.token;
+  //JWT
+  setUser(JSON.parse(localStorage.getItem('profile')))
+},[]);
   function animation(){
     var tabsNewAnim = $('#navbarSupportedContent');
     var activeItemNewAnim = tabsNewAnim.find('.active');
