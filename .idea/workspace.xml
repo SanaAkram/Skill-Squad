@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5914a42f-8aae-4a7e-9ee6-de95d40ffe6e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Npm install.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Npm install.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/accountBox/common.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/accountBox/common.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/accountBox/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/accountBox/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/accountBox/loginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/accountBox/loginForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/accountBox/signupForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/accountBox/signupForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/accountBox/validity.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/accountBox/validity.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
