@@ -4,27 +4,64 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle,faCheckCircle, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import zxcvbn from 'zxcvbn';
 import { Button,Link } from '@material-ui/core';
+import { useFormik } from "formik";
 import {GoogleLogin} from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Icon  from './icon';
 import useStyles from './styles';
+import * as yup from "yup";
+import axios from "axios";
 import { AUTH } from '../constants/actionTypes';
 import {
   BoldLink,
   BoxContainer,
+  FieldContainer,
+  FieldError,
   FormContainer,
+  FormSuccess,
   Input,
-  
   MutedLink,
   SubmitButton,
-  Validity,
+  FormError,
+  Validity
 } from "./common";
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import './validity.css';
 import { nodeName } from "jquery";
 import validator from 'validator'
+
+
+const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
+const validationSchema = yup.object({
+  fullName: yup
+    .string()
+    .min(3, "Please enter you real name")
+    .required("Full name is required!"),
+  email: yup.string().email("Please enter a valid email address").required(),
+  password: yup
+    .string()
+    .matches(PASSWORD_REGEX, "Please enter a strong password")
+    .required(),
+  confirmPassword: yup
+    .string()
+    .required("Please confirm your password")
+    .when("password", {
+      is: (val) => (val && val.length > 0 ? true : false),
+      then: yup
+        .string()
+        .oneOf([yup.ref("password")], "Password does not match"),
+    }),
+});
+
+
+
+
+
+
+
 export function SignupForm(props) {
 
   //Gsignin
@@ -133,19 +170,91 @@ const App = () => {
     </div>
   );
 }
+const [success, setSuccess] = useState(null);
+const [error, setError] = useState(null);
 
+const onSubmit = async (values) => {
+  const { confirmPassword, ...data } = values;
+
+  const response = await axios
+    .post("http://localhost:3000/api/v1/register", data)
+    .catch((err) => {
+      if (err && err.response) setError(err.response.data.message);
+      setSuccess(null);
+    });
+
+  if (response && response.data) {
+    setError(null);
+    setSuccess(response.data.message);
+    formik.resetForm();
+  }
+};
+
+const formik = useFormik({
+  initialValues: {
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  },
+  validateOnBlur: true,
+  onSubmit,
+  validationSchema: validationSchema,
+});
+
+console.log("Error", error);
   return (
  
 
     <BoxContainer>
-      <FormContainer>
-        <Input type="text" placeholder="Full Name" />
-        <Input type="email" placeholder="Email" />
-        <Input type={show ? "text" : "password"} 
+       {!error && <FormSuccess>{success ? success : ""}</FormSuccess>}
+      {!success && <FormError>{error ? error : ""}</FormError>}
+  
+      <FormContainer onSubmit={formik.handleSubmit}>
+      <FieldContainer>
+          <Input
+            name="fullName"
+            placeholder="Full Name"
+            value={formik.values.fullName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <FieldError>
+            {formik.touched.fullName && formik.errors.fullName
+              ? formik.errors.fullName
+              : ""}
+          </FieldError>
+        </FieldContainer>
+        <FieldContainer>
+          <Input
+            name="email"
+            placeholder="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <FieldError>
+            {formik.touched.email && formik.errors.email
+              ? formik.errors.email
+              : ""}
+          </FieldError>
+        </FieldContainer>
+        <FieldContainer>
+        <Input
+        name="password"
+         type={show ? "text" : "password"} 
         placeholder="Password" 
-        onChange={ e => setPassword(e.target.value)}
-
+        // onChange={ e => setPassword(e.target.value)}
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         />
+        <FieldError>
+            {formik.touched.password && formik.errors.password
+              ? formik.errors.password
+              : ""}
+          </FieldError>
+        </FieldContainer>
         {show ? (
        <FontAwesomeIcon 
        className="faEye" icon={faEye} 
@@ -165,12 +274,22 @@ const App = () => {
                />
 
           )}
-        {/* <Input 
+        <FormContainer>
+       <Input 
+        name="confirmPassword"
         type= {show ? "text" : "password"}
         placeholder="Confirm Password" 
-        onChange={handleInputChange}
-        /> */}
-      
+        // onChange={handleInputChange}
+        value={formik.values.confirmPassword}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        /> 
+         <FieldError>
+            {formik.touched.confirmPassword && formik.errors.confirmPassword
+              ? formik.errors.confirmPassword
+              : ""}
+          </FieldError>
+      </FormContainer>
         
        
            <div id="password-strength" 
@@ -216,10 +335,13 @@ const App = () => {
         
       
        </Validity>
-      </FormContainer>
-      <Marginer direction="vertical" margin={10} />
-      <SubmitButton type="submit" component={Link} to="/dashboard">Signup</SubmitButton>
-      <GoogleLogin
+      
+      <Marginer direction="vertical" margin="1em" />
+        <SubmitButton type="submit" disabled={!formik.isValid}>
+          Signup
+        </SubmitButton>
+        </FormContainer>
+       <GoogleLogin
             clientId="393187504719-870o8ako76qor4oo8d3vracjm9ai5a1o.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button className={classes.googleButton} 
@@ -235,11 +357,11 @@ const App = () => {
             onFailure={googleError}
             cookiePolicy="single_host_origin"
           />
-      <Marginer direction="vertical" margin="1em" />
+    <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">
         Already have an account?
         <BoldLink href="#" onClick={switchToSignin}>
-          Signin
+          sign in
         </BoldLink>
       </MutedLink>
     </BoxContainer>

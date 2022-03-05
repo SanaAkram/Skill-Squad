@@ -13,9 +13,19 @@ import Home from './pages/Home/Home';
 import Services from './pages/Service/Services';
 import Navbar from './Components/Navbar/Navbar';
 import Courses from './pages/Courses/Courses';
-import Account from './Components/Account';
+// import Account from './Components/Account';
+import styled from "styled-components";
 import { FooterContainer } from './Components/Footer/containers/footer'
+import { AccountBox } from "./Components/accountBox";
 
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 const App = () => {
  
@@ -39,13 +49,12 @@ const App = () => {
         <Route path="/contact" exact>
           <Contact/>
         </Route>
-        <Route path="/Account" exact>
-           
-          <Account/>
-        </Route>
-        
+        <AppContainer>
+      <AccountBox />
+    </AppContainer>
       </Switch>
     </main>
+   
     <FooterContainer />
    </Router>
   );

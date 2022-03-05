@@ -6,7 +6,7 @@
     opacity: 1;
 }
 #show_hide{
-    transform: translateX(260px) translateY(-29px) !important;
+    transform: translateX(260px)  translateY(-45px) !important;
     cursor: pointer;
     color: rgb(26,43, 68);
 }

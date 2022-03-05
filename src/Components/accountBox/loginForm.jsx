@@ -1,61 +1,101 @@
 import React, { useState ,useContext } from "react";
+import { Field, useFormik } from "formik";
+
 import {
   BoldLink,
   BoxContainer,
+  FieldContainer,
+  FieldError,
   FormContainer,
+  FormError,
   Input,
   MutedLink,
   SubmitButton,
 } from "./common";
 import { Marginer } from "../marginer";
+import * as yup from "yup";
+import axios from "axios";
 import { AccountContext } from "./accountContext";
 import PropTypes from 'prop-types';
-async function loginUser(credentials) {
-  return fetch('http://localhost:8080/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
+const validationSchema = yup.object({
+  email: yup.string().required(),
+  password: yup.string().required(),
+});
 
-export function LoginForm(props, { setToken }) {
+export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);
-  const [email, setemail] = useState();
-  const [password, setPassword] = useState();
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const token = await loginUser({
-      email,
-      password
-    });
-    setToken(token);
-  }
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (values) => {
+    setError(null);
+    const response = await axios
+      .post("http://localhost:3000/api/v1/login", values)
+      .catch((err) => {
+        if (err && err.response) setError(err.response.data.message);
+      });
+
+    if (response) {
+      alert("Welcome back in. Authenticating...");
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: { email: "", password: "" },
+    validateOnBlur: true,
+    onSubmit,
+    validationSchema: validationSchema,
+  });
+
   return (
     <BoxContainer>
-      <FormContainer>
-        <Input type="email" placeholder="Email" onChange={e => setemail(e.target.value)} />
-        <Input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+      <FormError>{error ? error : ""}</FormError>
+      <FormContainer onSubmit={formik.handleSubmit}>
+        <FieldContainer>
+          <Input
+            name="email"
+            placeholder="Email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {
+            <FieldError>
+              {formik.touched.email && formik.errors.email
+                ? formik.errors.email
+                : ""}
+            </FieldError>
+          }
+        </FieldContainer>
+        <FieldContainer>
+          <Input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          {
+            <FieldError>
+              {formik.touched.password && formik.errors.password
+                ? formik.errors.password
+                : ""}
+            </FieldError>
+          }
+        </FieldContainer>
+        <MutedLink href="#">Forgot Password?</MutedLink>
+        <Marginer direction="vertical" margin="1em" />
+        <SubmitButton type="submit" disabled={!formik.isValid}>
+          Login
+        </SubmitButton>
       </FormContainer>
-      <Marginer direction="vertical" margin={10} />
-      <MutedLink href="#">Forget your password?</MutedLink>
-      <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton href="/login" type="submit">Signin</SubmitButton>
-  
-      <Marginer direction="vertical" margin="1em" />
-     
+      <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">
-        Don't have an accoun?{" "}
-        <BoldLink  onClick={switchToSignup}>
-          Signup
+        Dont have an Account?
+        <BoldLink href="#" onClick={switchToSignup}>
+          sign up
         </BoldLink>
       </MutedLink>
-   
     </BoxContainer>
   );
-}
-LoginForm.propTypes = {
-  setToken: PropTypes.func.isRequired
 }
