@@ -3,11 +3,12 @@ import React, { useContext,useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle,faCheckCircle, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import zxcvbn from 'zxcvbn';
+import {Alert} from '@material-ui/lab';
 import { Button,Link } from '@material-ui/core';
 import { useFormik } from "formik";
 import {GoogleLogin} from 'react-google-login';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useNavigate } from 'react-router-dom';
 import Icon  from './icon';
 import useStyles from './styles';
 import * as yup from "yup";
@@ -36,7 +37,7 @@ import validator from 'validator'
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
 const validationSchema = yup.object({
-  fullName: yup
+  username: yup
     .string()
     .min(3, "Please enter you real name")
     .required("Full name is required!"),
@@ -63,27 +64,28 @@ const validationSchema = yup.object({
 
 
 export function SignupForm(props) {
+    const navigate = useNavigate();
 
-  //Gsignin
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const googleSuccess = async (res) => {
-        const result = res?.profileObj;
-        const token = res?.tokenId;
-
-    
-        try {
-         dispatch({ type: AUTH, data: { result, token } });
-    
-           history.push('/');
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      const googleError = () => alert('Google Sign In was unsuccessful. Try again later');
-    
-      const classes = useStyles();
-  //Gsignin
+  // //Gsignin
+  //   const dispatch = useDispatch();
+  //   const history = useHistory();
+  //   const googleSuccess = async (res) => {
+  //       const result = res?.profileObj;
+  //       const token = res?.tokenId;
+  //
+  //
+  //       try {
+  //        dispatch({ type: AUTH, data: { result, token } });
+  //
+  //          history.push('/');
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     };
+  //     const googleError = () => alert('Google Sign In was unsuccessful. Try again later');
+  //
+  //     const classes = useStyles();
+  // //Gsignin
   const [show, setShow] = useState(false);
 const { switchToSignin } = useContext(AccountContext);
 
@@ -172,27 +174,43 @@ const App = () => {
 }
 const [success, setSuccess] = useState(null);
 const [error, setError] = useState(null);
-
+  const [err, setErr] = useState({
+      status: false,
+      msg: "",
+      type:""
+    });
 const onSubmit = async (values) => {
   const { confirmPassword, ...data } = values;
 
   const response = await axios
     .post("http://127.0.0.1:8000/api/registration", data)
-    .catch((err) => {
-      if (err && err.response) setError(err.response.data.message);
-      setSuccess(null);
+
+      .catch((error) => {
+
+          // setErr({status: true, msg: "REGISTERED  !", type: 'success'})
+
+
     });
 
   if (response && response.data) {
-    setError(null);
-    setSuccess(response.data.message);
-    formik.resetForm();
+
+
+      if (response) {
+       window.alert(response.data.Message);
+
+      }
+       // setErr({status: true, msg: "User Exists !", type: 'error'})
+
+         // navigate('/signin')
+
   }
+
+
 };
 
 const formik = useFormik({
   initialValues: {
-    fullName: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -201,27 +219,25 @@ const formik = useFormik({
   onSubmit,
   validationSchema: validationSchema,
 });
-
-console.log("Error", error);
   return (
  
 
     <BoxContainer>
        {!error && <FormSuccess>{success ? success : ""}</FormSuccess>}
       {!success && <FormError>{error ? error : ""}</FormError>}
-  
+
       <FormContainer onSubmit={formik.handleSubmit}>
       <FieldContainer>
           <Input
-            name="fullName"
+            name="username"
             placeholder="Full Name"
-            value={formik.values.fullName}
+            value={formik.values.username}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           <FieldError>
-            {formik.touched.fullName && formik.errors.fullName
-              ? formik.errors.fullName
+            {formik.touched.username && formik.errors.username
+              ? formik.errors.username
               : ""}
           </FieldError>
         </FieldContainer>
@@ -341,7 +357,7 @@ console.log("Error", error);
           Signup
         </SubmitButton>
         </FormContainer>
-       <GoogleLogin
+       {/* <GoogleLogin
             clientId="393187504719-870o8ako76qor4oo8d3vracjm9ai5a1o.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button className={classes.googleButton} 
@@ -356,7 +372,11 @@ console.log("Error", error);
             onSuccess={googleSuccess}
             onFailure={googleError}
             cookiePolicy="single_host_origin"
-          />
+          /> */}
+           {err.status ?  <Alert severity={err.type}>{err.msg} </Alert>
+          : ''
+
+      }
     <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">
         Already have an account?

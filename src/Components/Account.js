@@ -14,7 +14,7 @@ const AppContainer = styled.div`
 
 const Account = () => {
   return (
-    <AppContainer>
+          <AppContainer>
     
          <AccountBox />
          </AppContainer>

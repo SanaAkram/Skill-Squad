@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { LoginForm } from "./loginForm";
 import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext";
-import { SignupForm } from "./signupForm";
+import { SignupForm } from "./signup";
 import { FormContainer } from "./common";
 
 const BoxContainer = styled.div`
@@ -160,10 +160,12 @@ export function AccountBox(props) {
             </>
           )}
         </TopContainer>
+
         <InnerContainer>
           {active === "signin" && <LoginForm />}
           {active === "signup" && <SignupForm />}
         </InnerContainer>
+
       </BoxContainer>
     </AccountContext.Provider>
   );
