@@ -17,10 +17,10 @@ import * as yup from "yup";
 import axios from "axios";
 import { AccountContext } from "./accountContext";
 import PropTypes from 'prop-types';
-const validationSchema = yup.object({
-  email: yup.string().required(),
-  password: yup.string().required(),
-});
+// const validationSchema = yup.object({
+//   username: yup.string().required(),
+//   password: yup.string().required(),
+// });
 
 export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);
@@ -29,7 +29,7 @@ export function LoginForm(props) {
   const onSubmit = async (values) => {
     setError(null);
     const response = await axios
-      .post("http://localhost:3000/api/v1/login", values)
+      .post("http://127.0.0.1:8000/Kavtech/login/", values)
       .catch((err) => {
         if (err && err.response) setError(err.response.data.message);
       });
@@ -40,10 +40,10 @@ export function LoginForm(props) {
   };
 
   const formik = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: { username: "", password: "" },
     validateOnBlur: true,
     onSubmit,
-    validationSchema: validationSchema,
+    // validationSchema: validationSchema,
   });
 
   return (
@@ -52,16 +52,16 @@ export function LoginForm(props) {
       <FormContainer onSubmit={formik.handleSubmit}>
         <FieldContainer>
           <Input
-            name="email"
-            placeholder="Email"
-            value={formik.values.email}
+            name="username"
+            placeholder="username"
+            value={formik.values.username}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
           {
             <FieldError>
-              {formik.touched.email && formik.errors.email
-                ? formik.errors.email
+              {formik.touched.username && formik.errors.username
+                ? formik.errors.username
                 : ""}
             </FieldError>
           }

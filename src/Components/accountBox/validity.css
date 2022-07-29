@@ -8,7 +8,7 @@
 #show_hide{
     transform: translateX(260px)  translateY(-45px) !important;
     cursor: pointer;
-    color: rgb(26,43, 68);
+    color: rgb(26 43 68 / 38%);
 }
 .fa-check-circle{
     opacity: 1;

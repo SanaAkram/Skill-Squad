@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import $ from 'jquery';
 
 
-import logo from '../assets/images/logoss.png';
+import logo from '../assets/logoss.png';
 const Navbar = () => {
 const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 console.log(user);
@@ -97,13 +97,6 @@ useEffect(() =>{
                 <i 
                 className="far fa-clone">
                 </i>Services
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/Courses" exact>
-                <i 
-                className="far fa-chart-bar">
-                </i>Courses
               </NavLink>
             </li>
             <li className="nav-item">

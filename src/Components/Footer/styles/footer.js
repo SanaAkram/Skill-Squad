@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   padding-top: 20px ;
-  background-image: linear-gradient(to right,#979792, #5c0047);
+  background-image: linear-gradient(to right,#0062cc,#0062cc);
   padding-bottom: -10px;
   @media (max-width: 1000px) {
     padding-top: 20px;

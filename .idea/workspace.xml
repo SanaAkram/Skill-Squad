@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5914a42f-8aae-4a7e-9ee6-de95d40ffe6e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/modern-react-login" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/accountBox/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/accountBox/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/accountBox/loginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/accountBox/loginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/accountBox/signupForm.jsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,10 +27,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ChangesTree.GroupingKeys" value="" />
+    <property name="DatabaseDriversLRU" value="postgresql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
   </component>
   <component name="RunManager">
@@ -63,6 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646392221935</updated>
       <workItem from="1646478576417" duration="912000" />
+      <workItem from="1647758089713" duration="1220000" />
     </task>
     <servers />
   </component>

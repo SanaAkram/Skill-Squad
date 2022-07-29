@@ -17,7 +17,7 @@ export const FormContainer = styled.form`
 
 export const MutedLink = styled.a`
   font-size: 11px;
-  color: rgba(200, 200, 200, 0.8);
+  color: black;
   font-weight: 500;
   text-decoration: none;
 `;
@@ -31,14 +31,17 @@ export const BoldLink = styled.a`
 `;
 
 export const Input = styled.input`
-  width: 100%;
-  height: 42px;
-  outline: none;
-  border: 1px solid rgba(200, 200, 200, 0.3);
-  padding: 0px 10px;
-  border-bottom: 1.4px solid transparent;
-  transition: all 200ms ease-in-out;
-  font-size: 12px;
+width: 100%;
+height: 42px;
+outline: none;
+border: 1px solid rgb(0 0 0 / 19%);
+padding: 0px 10px;
+border-bottom: 1px solid rgb(0 0 0 / 19%);
+-webkit-transition: all 200ms ease-in-out;
+-webkit-transition: all 200ms ease-in-out;
+transition: all 200ms ease-in-out;
+font-size: 12px;
+
 
   &::placeholder {
     color: rgba(200, 200, 200, 1);
@@ -64,7 +67,7 @@ export const SubmitButton = styled.button`
   border-radius: 100px 100px 100px 100px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-  background:   linear-gradient( 58deg,rgb(57 2 16 / 99%) 20%,rgb(134 33 160 / 92%) 100% );
+  background-image:   linear-gradient(to right,#0062cc,#0062cc);
   margin-bottom: 10px;
   );
 
@@ -82,7 +85,7 @@ opacity: 0.5 ;
 transition :0.3s ;
 
 outline: none;
-border: 1px solid rgba(200, 200, 200, 0.3);
+border: 1px solid rgb(0 0 0 / 16%);
 padding: 0px 10px;
 border-bottom: 1.4px solid transparent;
 transition: all 200ms ease-in-out;
@@ -112,7 +115,7 @@ export const GoogleLogin = styled.button`
   border-radius: 100px 100px 100px 100px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-  background:   linear-gradient( 58deg,rgb(57 2 16 / 99%) 20%,rgb(134 33 160 / 92%) 100% );
+  background:  linear-gradient(to right,#0062cc,#0062cc);
 
   );
 

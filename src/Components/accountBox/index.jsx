@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { LoginForm } from "./loginForm";
 import { motion } from "framer-motion";
 import { AccountContext } from "./accountContext";
-import { SignupForm } from "./signupForm";
+import { SignupForm } from "./signup";
 import { FormContainer } from "./common";
 
 const BoxContainer = styled.div`
@@ -41,8 +41,7 @@ const BackDrop = styled(motion.div)`
   top: -290px;
   left: -70px;
   background: rgb(241, 196, 15);
-  background: 
-  linear-gradient( 58deg,rgb(57 2 16 / 99%) 20%,rgb(134 33 160 / 92%) 100% );
+  background: linear-gradient(to right,#0062cc,#0062cc);
 `;
 
 const HeaderContainer = styled.div`
